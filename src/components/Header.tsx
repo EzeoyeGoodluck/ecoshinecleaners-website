@@ -170,7 +170,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={onOpenQuote}
-              className="bg-[#57B900] hover:bg-[#4ea600] text-white font-bold px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl shadow-md shadow-[#57B900]/25 hover:shadow-lg transition-all transform hover:-translate-y-0.5 text-xs sm:text-sm flex items-center gap-2 cursor-pointer active:scale-95"
+              className="hidden md:flex bg-[#57B900] hover:bg-[#4ea600] text-white font-bold px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl shadow-md shadow-[#57B900]/25 hover:shadow-lg transition-all transform hover:-translate-y-0.5 text-xs sm:text-sm items-center gap-2 cursor-pointer active:scale-95"
             >
               <span>Get Instant Quote</span>
               <span className="text-base sm:text-lg">→</span>
