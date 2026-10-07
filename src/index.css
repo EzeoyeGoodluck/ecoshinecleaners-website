@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --color-ecoshine-forest: #004A2B;
+  --color-ecoshine-green: #57B900;
+  --color-soft-leaf: #DDF3C7;
+  --color-mist-green: #F4FAEF;
+  --color-clean-white: #FFFFFF;
+  --color-charcoal: #18201C;
+}
+
+:root {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  color: #18201C;
+  background-color: #F4FAEF;
+}
+
+/* Custom scrollbar and smooth interaction */
+html {
+  scroll-behavior: smooth;
+}
+
+.hero-glow {
+  background: radial-gradient(circle at 50% 10%, rgba(221, 243, 199, 0.6) 0%, rgba(244, 250, 239, 0) 70%);
+}
+
+.custom-shadow {
+  box-shadow: 0 12px 32px -4px rgba(0, 74, 43, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+}
