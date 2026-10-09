@@ -245,13 +245,10 @@ export const Header: React.FC<HeaderProps> = ({
                 📞 Call {regionConfig.phone}
               </a>
               <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenQuote();
-                }}
-                className="w-full text-center py-3 rounded-lg bg-[#57B900] text-white font-bold text-sm shadow-md"
+                onClick={() => handleNav('contact')}
+                className="w-full text-center py-2.5 rounded-lg bg-[#004A2B] text-white font-bold text-sm shadow-sm"
               >
-                Get Instant Quote →
+                ✉️ Contact Local Team
               </button>
             </div>
           </div>

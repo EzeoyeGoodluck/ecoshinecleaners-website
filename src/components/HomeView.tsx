@@ -206,16 +206,22 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <div className="pt-2 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
                 <button
                   onClick={() => onOpenQuote('regular')}
-                  className="bg-[#57B900] hover:bg-[#4ea600] text-white font-extrabold px-6 py-3.5 rounded-xl shadow-md shadow-[#57B900]/25 hover:shadow-lg transition-all transform hover:-translate-y-0.5 text-sm sm:text-base flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                  className="hidden md:inline-flex bg-[#57B900] hover:bg-[#4ea600] text-white font-extrabold px-6 py-3.5 rounded-xl shadow-md shadow-[#57B900]/25 hover:shadow-lg transition-all transform hover:-translate-y-0.5 text-sm sm:text-base items-center justify-center gap-2 cursor-pointer active:scale-95"
                 >
                   <span>Get an Instant Quote</span>
                   <span>→</span>
                 </button>
                 <button
                   onClick={() => onNavigate('services')}
-                  className="bg-white border-2 border-gray-200 hover:border-[#004A2B] text-[#18201C] font-bold px-6 py-3.5 rounded-xl transition text-sm sm:text-base"
+                  className="w-full sm:w-auto bg-white border-2 border-gray-200 hover:border-[#004A2B] text-[#18201C] font-bold px-6 py-3.5 rounded-xl transition text-sm sm:text-base text-center"
                 >
                   View Rates & Services
+                </button>
+                <button
+                  onClick={() => onNavigate('contact')}
+                  className="md:hidden w-full bg-[#004A2B] text-white font-bold px-6 py-3.5 rounded-xl transition text-sm text-center"
+                >
+                  Contact Our Team
                 </button>
               </div>
 

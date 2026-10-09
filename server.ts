@@ -80,7 +80,8 @@ async function startServer() {
           estimated_investment: submission.estimatedPrice ? `£${submission.estimatedPrice}.00` : 'Quote Requested',
           has_pets: submission.hasPets ? 'YES - Dispatch pet-safe botanical solution' : 'No pets noted',
           preferred_contact_method: submission.contactMethod || 'WhatsApp / Phone',
-          notes_or_message: submission.message || submission.notes || submission.quote || 'No extra notes provided',
+          what_they_want_or_requirements: submission.whatTheyWant || submission.notes || submission.message || 'General cleaning enquiry',
+          notes_or_message: submission.message || submission.notes || submission.quote || submission.whatTheyWant || 'No extra notes provided',
           region_hub: submission.region || 'Northampton & Northamptonshire',
           submitted_at: submission.timestamp,
         };
