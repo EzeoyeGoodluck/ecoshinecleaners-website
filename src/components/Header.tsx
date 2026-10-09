@@ -53,11 +53,11 @@ export const Header: React.FC<HeaderProps> = ({
                 className="bg-transparent text-white border-0 text-[11px] font-bold focus:ring-0 cursor-pointer pr-4 py-0"
                 aria-label="Select service hub region"
               >
+                <option value="northampton" className="bg-[#004A2B] text-white">
+                  Northamptonshire (HQ)
+                </option>
                 <option value="southampton" className="bg-[#004A2B] text-white">
                   Southampton & Hampshire
-                </option>
-                <option value="northampton" className="bg-[#004A2B] text-white">
-                  Northampton & Northants
                 </option>
               </select>
             </div>

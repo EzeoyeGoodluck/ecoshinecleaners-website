@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ServiceType, BookingState, Region } from '../types';
 import { ADD_ONS, REGIONS, CLEANING_PACKAGES } from '../data/cleaningData';
 
-const TARGET_EMAIL = 'ecoshinecleanerslimited@gmail.com';
+const TARGET_EMAIL = 'info@ecoshinecleaners.uk.com';
 const TARGET_PHONE = '+44 7375 614692';
 const TARGET_PHONE_RAW = '+447375614692';
 

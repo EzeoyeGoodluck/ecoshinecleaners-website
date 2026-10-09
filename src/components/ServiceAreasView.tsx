@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HAMPSHIRE_ZONES, REGIONS } from '../data/cleaningData';
+import { REGION_ZONES, REGIONS } from '../data/cleaningData';
 import { Region } from '../types';
 
 interface ServiceAreasViewProps {
@@ -14,7 +14,9 @@ export const ServiceAreasView: React.FC<ServiceAreasViewProps> = ({
   const regionConfig = REGIONS[selectedRegion];
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredZones = HAMPSHIRE_ZONES.filter(
+  const currentZones = REGION_ZONES[selectedRegion] || [];
+
+  const filteredZones = currentZones.filter(
     (z) =>
       z.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
       z.areaName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -41,7 +43,11 @@ export const ServiceAreasView: React.FC<ServiceAreasViewProps> = ({
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search your town, suburb or postcode (e.g. Ocean Village, SO14, Romsey)..."
+            placeholder={
+              selectedRegion === 'northampton'
+                ? "Search your town or postcode (e.g. Northampton, NN1, Kettering, Towcester)..."
+                : "Search your town, suburb or postcode (e.g. Ocean Village, SO14, Romsey)..."
+            }
             className="w-full p-3.5 rounded-2xl border border-gray-300 text-sm focus:ring-[#57B900] focus:border-[#57B900] bg-white shadow-xs"
           />
         </div>

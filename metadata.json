@@ -1,6 +1,6 @@
 {
-  "name": "EcoShine Cleaners - Non-Toxic Eco Cleaning",
-  "description": "100% non-toxic, plant-based domestic and commercial eco-cleaning across Southampton, Winchester, and Hampshire. Fully vetted DBS-checked cleaners.",
+  "name": "EcoShine Cleaners - Non-Toxic Eco Cleaning Northamptonshire",
+  "description": "100% non-toxic, plant-based domestic and commercial eco-cleaning across Northampton, Kettering, Corby, Wellingborough, and Northamptonshire. Fully vetted DBS-checked cleaners.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

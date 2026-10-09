@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const TARGET_EMAIL = 'ecoshinecleanerslimited@gmail.com';
+const TARGET_EMAIL = 'info@ecoshinecleaners.uk.com';
 const TARGET_PHONE = '+44 7375 614692';
 
 async function startServer() {
@@ -48,7 +48,7 @@ async function startServer() {
         console.error('Error saving lead to file:', fileErr);
       }
 
-      // Forward to email endpoint for ecoshinecleanerslimited@gmail.com
+      // Forward to email endpoint for info@ecoshinecleaners.uk.com
       try {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 6000);
@@ -81,7 +81,7 @@ async function startServer() {
           has_pets: submission.hasPets ? 'YES - Dispatch pet-safe botanical solution' : 'No pets noted',
           preferred_contact_method: submission.contactMethod || 'WhatsApp / Phone',
           notes_or_message: submission.message || submission.notes || submission.quote || 'No extra notes provided',
-          region_hub: submission.region || 'Southampton & Hampshire',
+          region_hub: submission.region || 'Northampton & Northamptonshire',
           submitted_at: submission.timestamp,
         };
 

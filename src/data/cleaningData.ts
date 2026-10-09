@@ -17,13 +17,28 @@ export interface RegionConfig {
 }
 
 export const REGIONS: Record<Region, RegionConfig> = {
+  northampton: {
+    id: 'northampton',
+    name: 'Northampton & Northamptonshire',
+    tagline: 'Northampton, Kettering, Corby, Wellingborough, Rushden, Daventry & Towcester',
+    phone: '+44 7375 614692',
+    phoneRaw: '+447375614692',
+    email: 'info@ecoshinecleaners.uk.com',
+    address: 'Derngate Cultural Quarter, Northampton, Northamptonshire, NN1 1TY',
+    whatsapp: 'https://wa.me/447375614692',
+    whatsappNumber: '+44 7375 614692',
+    postcodePrefixes: ['NN1', 'NN2', 'NN3', 'NN4', 'NN5', 'NN6', 'NN7', 'NN8', 'NN9', 'NN10', 'NN11', 'NN12', 'NN13', 'NN14', 'NN15', 'NN16', 'NN17', 'NN18'],
+    samplePostcode: 'NN1 5AA',
+    activeZones: 'NN1, NN2, NN3, NN4, NN5 & NN15',
+    riverOrWaterway: 'our River Nene waters',
+  },
   southampton: {
     id: 'southampton',
     name: 'Southampton & Hampshire',
     tagline: 'Southampton, Ocean Village, Bassett, Totton, Eastleigh, Romsey & Winchester',
     phone: '+44 7375 614692',
     phoneRaw: '+447375614692',
-    email: 'ecoshinecleanerslimited@gmail.com',
+    email: 'info@ecoshinecleaners.uk.com',
     address: 'Guildhall Square, Cultural Quarter, Southampton, Hampshire, SO14 7FP',
     whatsapp: 'https://wa.me/447375614692',
     whatsappNumber: '+44 7375 614692',
@@ -31,21 +46,6 @@ export const REGIONS: Record<Region, RegionConfig> = {
     samplePostcode: 'SO14 3TL',
     activeZones: 'SO14, SO15, SO16 & SO30',
     riverOrWaterway: 'our Solent waters',
-  },
-  northampton: {
-    id: 'northampton',
-    name: 'Northampton & Northamptonshire',
-    tagline: 'Northampton, Duston, Kingsthorpe, Abington, Wootton, Daventry & Towcester',
-    phone: '+44 7375 614692',
-    phoneRaw: '+447375614692',
-    email: 'ecoshinecleanerslimited@gmail.com',
-    address: 'Derngate Cultural Quarter, Northampton, Northamptonshire, NN1 1TY',
-    whatsapp: 'https://wa.me/447375614692',
-    whatsappNumber: '+44 7375 614692',
-    postcodePrefixes: ['NN1', 'NN2', 'NN3', 'NN4', 'NN5', 'NN6', 'NN7', 'NN8', 'NN9', 'NN10', 'NN11', 'NN12', 'NN14', 'NN15'],
-    samplePostcode: 'NN1 5AA',
-    activeZones: 'NN1, NN2, NN3, NN4 & NN5',
-    riverOrWaterway: 'our River Nene waters',
   }
 };
 
@@ -58,195 +58,203 @@ export const CLEANING_PACKAGES: CleaningPackage[] = [
     shortDesc: 'Weekly, Fortnightly, or Monthly routine care',
     priceDisplay: '£18.50',
     priceSub: '/ hour (min 2 hrs)',
-    promoTag: '🔄 Flexible schedules • Cancel anytime',
+    promoTag: '🌱 Save 15% on Weekly Schedules',
     features: [
-      'Dedicated regular cleaner (same face every clean)',
-      'Full kitchen degreasing, exterior hobs & worktops',
-      'Sanitary bathroom scrub & light eco descaling',
-      'HEPA anti-allergen vacuuming & mopping',
-      'Organic citrus & eucalyptus botanical freshening'
+      'Dedicated vetted cleaner (same friendly face each visit)',
+      '100% plant-based EcoShine formulas & microfiber cloths provided',
+      'HEPA-filter allergy vacuuming across all floor surfaces',
+      'Surface sanitation of kitchen, bathrooms, bedrooms & lounge',
+      'Safe key holding & flexible digital rescheduling',
+      '24-Hour satisfaction re-clean guarantee'
     ],
-    ctaLabel: 'Book Regular Clean →',
+    ctaLabel: 'Book Regular Clean',
     isPopular: true
   },
   {
     id: 'deep',
-    title: 'Deep Spring Clean',
-    badge: '★ Best Value Season Revival',
+    title: 'Deep Clean & Spring Revival',
+    badge: 'Seasonal Refresh',
     badgeType: 'highlight',
-    shortDesc: 'Total property refresh, corner to corner',
+    shortDesc: 'Intensive top-to-bottom non-toxic refresh',
     priceDisplay: '£120',
-    priceSub: 'fixed quote (from)',
-    promoTag: '🌿 Complete Botanical Detail',
+    priceSub: 'fixed rate (up to 3 beds)',
+    promoTag: 'Includes Full Limescale & Descaling',
     features: [
-      'Heavy limescale removal (taps, tiles & shower glass)',
-      'Inside oven extractor hood & exterior filter wipe',
-      'Behind & under accessible furniture & appliances',
-      'Detailed woodwork: doors, frames, skirting baseboards',
-      'Interior window sills, reachable light switches & sockets'
+      'Complete high-to-low dusting including light fixtures & vents',
+      'Intensive bathroom descaling with plant enzymes & citric acid',
+      'Deep kitchen degreasing (stovetops, tile splashbacks & exterior units)',
+      'Baseboards, skirting boards, door frames & switches detailed',
+      'Inside window glass & sills thoroughly buffed',
+      'Under & behind reachable furniture cleaned'
     ],
-    ctaLabel: 'Schedule Deep Clean →',
-    isPopular: true
+    ctaLabel: 'Book Deep Revival Clean'
   },
   {
     id: 'tenancy',
     title: 'End of Tenancy Move-Out',
     badge: '100% Deposit Guarantee',
     badgeType: 'accent',
-    shortDesc: 'Tenant, landlord & letting agent approval',
+    shortDesc: 'Inventory-approved tenancy handovers',
     priceDisplay: '£165',
-    priceSub: 'fixed price (from)',
-    promoTag: '🛡️ 48-Hour Re-Clean Free',
+    priceSub: 'fixed rate (flat / small house)',
+    promoTag: 'Official Letting Agent Checklist Compliant',
     features: [
-      'Strict Letting Agency Checklist compliant (ARLA/RICS)',
-      'Full oven valet included using plant-based bio degreasers',
-      'Inside all kitchen cupboards, drawers, fridge/freezer wipe',
-      'Restorative scale removal in sinks, taps, baths & toilets',
-      'Formal invoice & Certificate of Eco-Cleaning issued'
+      'Comprehensive estate agent checkout specification',
+      'Inside kitchen cupboards, pantry, fridge & appliance exterior',
+      'Deep oven & extractor treatment (fume-free organic paste)',
+      'Complete sanitisation of all sanitary ware & grout revival',
+      'Free 48-hour re-clean guarantee if inventory clerk raises a note',
+      'Digital signed handover receipt for your landlord / agency'
     ],
-    ctaLabel: 'Book Move-Out Clean →'
+    ctaLabel: 'Book Tenancy Clean'
   },
   {
     id: 'commercial',
-    title: 'Commercial & Airbnb',
-    badge: 'Hospitality & Offices',
+    title: 'Commercial & Airbnb Care',
+    badge: 'Bespoke Business',
     badgeType: 'neutral',
-    shortDesc: 'Holiday lets, studios, & commercial offices',
+    shortDesc: 'Offices, studios, holiday lets & clinic spaces',
     priceDisplay: 'Bespoke',
-    priceSub: 'Contract or Per-Turn',
-    promoTag: '⚡ Fast 10am–3pm Window',
+    priceSub: 'tailored per square footage',
+    promoTag: 'Zero Chemical Odour For Staff & Guests',
     features: [
-      'Same-day guest turnaround with photo inspection report',
-      'Hotel-grade linen laundry & bed dressing service',
-      'Organic toiletries restocking & welcome hamper staging',
-      'Key safe management & co-host sync',
-      'Dedicated Commercial Account Manager & B2B VAT invoicing'
+      'Flexible out-of-hours scheduling (evenings, early mornings, weekends)',
+      'Turnover care for Airbnb hosts (linen changes & restock options)',
+      'High-touch surface disinfection (keyboards, handles, desk dividers)',
+      'Communal kitchens, water points & bathroom hygiene care',
+      'Full COSHH sheets & DBS-cleared insured cleaning staff',
+      'Monthly invoicing & dedicated account management'
     ],
-    ctaLabel: 'Request Business Quote →'
+    ctaLabel: 'Enquire for Business'
   }
 ];
 
-export const COMPARISON_ROWS = [
+export interface ComparisonRow {
+  name: string;
+  regular: string;
+  deep: string;
+  tenancy: string;
+  commercial: string;
+}
+
+export const COMPARISON_ROWS: ComparisonRow[] = [
   {
-    name: 'Plant-Based, Toxin-Free Detergents',
-    regular: 'Yes',
-    deep: 'Yes',
-    tenancy: 'Yes',
-    commercial: 'Yes',
-    highlightDeep: false
+    name: '100% Non-Toxic & Plant Detergents',
+    regular: '✓ Always',
+    deep: '✓ Always',
+    tenancy: '✓ Always',
+    commercial: '✓ Always',
   },
   {
-    name: 'HEPA Dual-Filtration Allergen Vacuuming',
-    regular: 'Yes',
-    deep: 'Yes',
-    tenancy: 'Yes',
-    commercial: 'Yes',
-    highlightDeep: false
+    name: 'DBS-Vetted & Living Wage Cleaners',
+    regular: '✓ Dedicated',
+    deep: '✓ Team of 2',
+    tenancy: '✓ Specialist Crew',
+    commercial: '✓ Vetted & Insured',
   },
   {
-    name: 'Full Kitchen Surfaces & Splashback Sanitisation',
-    regular: 'Yes',
-    deep: 'Yes',
-    tenancy: 'Yes',
-    commercial: 'Yes',
-    highlightDeep: false
+    name: 'HEPA-Filter Allergy Vacuuming',
+    regular: '✓ Included',
+    deep: '✓ Intensive',
+    tenancy: '✓ Full Property',
+    commercial: '✓ Commercial Grade',
   },
   {
-    name: 'Oven Interior, Racks & Hob Detailing',
-    regular: 'Add-on (£45)',
-    deep: 'Add-on / Discounted',
-    tenancy: 'Included Free',
-    commercial: 'Add-on Option',
-    highlightDeep: true
+    name: 'Descaling & Mineral Revival',
+    regular: 'Routine',
+    deep: '✓ Intensive',
+    tenancy: '✓ Complete',
+    commercial: 'As Specified',
   },
   {
-    name: 'Inside Empty Cabinets, Drawers & Pantries',
-    regular: '—',
-    deep: 'Upon Request',
-    tenancy: 'Yes (Full Detail)',
-    commercial: 'Yes',
-    highlightDeep: true
+    name: 'Inside Windows & French Doors',
+    regular: 'Optional Add-on',
+    deep: '✓ Included',
+    tenancy: '✓ Included',
+    commercial: 'Optional',
   },
   {
-    name: 'Limescale Removal Depth',
-    regular: 'Standard Maintenance',
-    deep: 'Heavy Descaling',
-    tenancy: 'Restorative Grade',
-    commercial: 'Standard Daily',
-    highlightDeep: true
+    name: 'Inside Ovens & Deep Appliances',
+    regular: 'Optional Add-on',
+    deep: 'Optional Add-on',
+    tenancy: '✓ Full Oven & Hob',
+    commercial: 'Optional',
   },
   {
-    name: 'Deposit Return 48-Hour Guarantee Certificate',
-    regular: '—',
-    deep: '—',
-    tenancy: '✓ Included (100%)',
-    commercial: '—',
-    highlightDeep: false
+    name: 'Satisfaction Re-Clean Guarantee',
+    regular: '24-Hour',
+    deep: '24-Hour',
+    tenancy: '✓ 100% Deposit Pass',
+    commercial: 'SLA Guaranteed',
   },
   {
-    name: 'Key Holding & Dedicated Account Manager',
-    regular: '—',
-    deep: '—',
-    tenancy: '—',
-    commercial: 'Yes (Dedicated)',
-    highlightDeep: false
-  }
+    name: 'Zero Single-Use Plastic Policy',
+    regular: '✓ Amber Refills',
+    deep: '✓ Amber Refills',
+    tenancy: '✓ Amber Refills',
+    commercial: '✓ Bulk Concentrates',
+  },
 ];
 
 export const ADD_ONS: AddOnItem[] = [
   {
     id: 'oven',
-    name: 'Eco Oven Bio-Valet',
+    name: 'Eco Oven & Grill Deep Treatment',
     icon: '🍳',
-    desc: 'Fume-free plant enzymatic breakdown of baked carbon & grease.',
+    desc: 'Fume-free soda paste & natural pumice lift burnt-on grease without toxic oven fumes.',
     price: 45
   },
   {
     id: 'carpet',
-    name: 'Carpet Steam Extraction',
+    name: 'Room Carpet Botanical Steam Extraction',
     icon: '🧼',
-    desc: 'High-temp hot water extraction with zero detergent residue.',
+    desc: 'Deep warm water extraction using enzyme deodorisers that lift stains and pet dander.',
     price: 35,
-    unit: '/room'
-  },
-  {
-    id: 'windows',
-    name: 'Inside Windows & Frames',
-    icon: '🪟',
-    desc: 'Streak-free vinegar & corn starch spray with micro-lint wipe.',
-    price: 25
-  },
-  {
-    id: 'upholstery',
-    name: 'Upholstery Plant-Foam',
-    icon: '🛋️',
-    desc: 'Gentle stain & odor extraction for 2–3 seater sofas.',
-    price: 40
+    unit: 'per room'
   },
   {
     id: 'fridge',
-    name: 'Fridge/Freezer Deep Clean',
+    name: 'Interior Refrigerator & Freezer Deep Sanitisation',
     icon: '❄️',
-    desc: 'Shelves washed, antibacterial tea tree oil misting.',
+    desc: 'Food-safe plant alcohol cleans seals, shelves and crisper drawers without synthetic chemicals.',
+    price: 25
+  },
+  {
+    id: 'windows',
+    name: 'Internal Glazing & French Doors Buffing',
+    icon: '🪟',
+    desc: 'Vinegar & alcohol-based plant buff leaves streak-free glass without chemical ammonia.',
     price: 30
+  },
+  {
+    id: 'upholstery',
+    name: 'Fabric Sofa & Cushion Eco Refresh',
+    icon: '🛋️',
+    desc: 'Natural probiotic mist neutralises odours and revitalises sofa fibres safely.',
+    price: 40
   }
 ];
 
 export const INGREDIENT_STANDARDS = [
   {
-    title: '🌱 Coconut & Corn Surfactants',
-    text: 'Natural plant cleansers that bind and lift surface grease effortlessly without stripping sealants.',
+    title: '🌿 Plant & Mineral Surfactants',
+    text: 'Derived from sustainably harvested coconut, corn sugars, and sugar beets. Fully biodegradable within 28 days.',
     tone: 'safe'
   },
   {
-    title: '🍋 Citric & White Acetic Acids',
-    text: 'Natural food-grade limescale dissolvers formulated specifically for hard tap water.',
+    title: '🍋 Organic Essential Oils & Citric Extracts',
+    text: 'Cold-pressed lemon, sweet orange, eucalyptus, and tea tree provide natural antibacterial power with fresh subtle scents.',
     tone: 'safe'
   },
   {
-    title: '🌿 100% Pure Essential Oils',
-    text: 'French eucalyptus, sweet orange, and organic tea tree for natural antimicrobial fragrance.',
+    title: '✨ Pure Sodium Bicarbonate & Washing Soda',
+    text: 'Time-tested minerals gently scrub stubborn grease and remove tough limescale without scratching delicate tiles or enamel.',
     tone: 'safe'
+  },
+  {
+    title: '🚫 0% Synthetic Fragrances or Phthalates',
+    text: 'We never mask odours with artificial aerosol scents that can trigger asthma, migraines, or allergies.',
+    tone: 'banned'
   },
   {
     title: '🚫 0% Chlorine Bleach or Ammonia',
@@ -261,8 +269,8 @@ export const FAQS = [
     a: 'Not at all! Our cleaners bring their own professional commercial HEPA-filtered vacuum cleaners, washed microfiber cloths, and full kits of plant-based EcoShine solutions in amber refill bottles.'
   },
   {
-    q: 'Which areas in Southampton and Hampshire do you cover?',
-    a: 'We cover all Southampton postcodes (SO14 through SO19, plus Totton, Romsey, Chandlers Ford, Eastleigh, Winchester, and surrounding Waterside areas with zero travel surcharge).'
+    q: 'Which areas in Northamptonshire do you cover?',
+    a: 'We cover all Northamptonshire postcodes across Northampton (NN1 through NN5), plus Kettering, Corby, Wellingborough, Daventry, Towcester, Rushden, Brackley, and surrounding county towns and villages with zero travel surcharge.'
   },
   {
     q: 'How does your 100% Deposit Return Guarantee work?',
@@ -282,25 +290,25 @@ export const REVIEWS: Review[] = [
   {
     id: '1',
     name: 'Sarah M.',
-    location: 'Bassett, Southampton',
+    location: 'Abington, Northampton',
     serviceType: 'Regular Domestic Clean',
     rating: 5,
-    quote: 'EcoShine has been cleaning our home in Bassett for 6 months now. Fresh, clean, and no chemical smell! With a 4-month-old baby and a golden retriever, having zero chemical bleach smells gives us total peace of mind. Truly spotless results every Tuesday!',
+    quote: 'EcoShine has been cleaning our home in Abington for 6 months now. Fresh, clean, and no chemical smell! With a 4-month-old baby and a golden retriever, having zero chemical bleach smells gives us total peace of mind. Truly spotless results every Tuesday!',
     verified: true
   },
   {
     id: '2',
     name: 'James T.',
-    location: 'Ocean Village Marina',
+    location: 'Northampton Town Centre (NN1)',
     serviceType: 'End of Tenancy Clean',
     rating: 5,
-    quote: 'Best end-of-tenancy clean I’ve ever booked. We moved out of our Ocean Village flat, and the inventory check-out clerk said it was the cleanest flat they’d inspected all month. Full deposit returned without a single question.',
+    quote: 'Best end-of-tenancy clean I’ve ever booked. We moved out of our Derngate flat, and the inventory check-out clerk said it was the cleanest flat they’d inspected all month. Full deposit returned without a single question.',
     verified: true
   },
   {
     id: '3',
     name: 'Claire & David',
-    location: 'Winchester & Totton',
+    location: 'Towcester & Daventry',
     serviceType: 'Deep Clean Revival',
     rating: 5,
     quote: 'Reliable, always on time, and our dog doesn’t sneeze after they clean! The natural lemongrass and eucalyptus scent is heavenly. Their customer support over WhatsApp is also wonderfully responsive.',
@@ -309,11 +317,109 @@ export const REVIEWS: Review[] = [
   {
     id: '4',
     name: 'Marcus L.',
-    location: 'Portswood & Highfield',
+    location: 'Duston & Kingsthorpe',
     serviceType: 'Commercial Office Care',
     rating: 5,
-    quote: 'We switched our creative agency studio to EcoShine. Staff immediately noticed the fresher air quality. Zero fumes in the morning, and the team handles keys with total professional discretion.',
+    quote: 'We switched our business studio in Duston to EcoShine. Staff immediately noticed the fresher air quality. Zero fumes in the morning, and the team handles keys with total professional discretion.',
     verified: true
+  },
+  {
+    id: '5',
+    name: 'Emma P.',
+    location: 'Wootton & Grange Park',
+    serviceType: 'Regular Domestic Clean',
+    rating: 5,
+    quote: 'Finding a reliable, eco-friendly cleaner in Northamptonshire was tough until we found EcoShine. Our bathrooms sparkle without that harsh stinging bleach smell. Highly recommended!',
+    verified: true
+  },
+  {
+    id: '6',
+    name: 'Robert K.',
+    location: 'Kettering & Burton Latimer',
+    serviceType: 'Deep Clean Revival',
+    rating: 5,
+    quote: 'Prompt, courteous and left our 4-bedroom house gleaming from top to bottom. Fantastic to have a local Northamptonshire company dedicated to non-toxic methods.',
+    verified: true
+  }
+];
+
+export const NORTHAMPTONSHIRE_ZONES: PostcodeZone[] = [
+  {
+    code: 'NN1',
+    areaName: 'Northampton Town Centre & Cultural Quarter',
+    suburbs: 'Derngate, Waterside, Becket’s Park, St Giles, Town Centre.',
+    status: 'Daily Route',
+    eligible: true
+  },
+  {
+    code: 'NN2',
+    areaName: 'Kingsthorpe, Boughton & Semilong',
+    suburbs: 'Kingsthorpe Village, Boughton, Semilong, Dallington & Queens Park.',
+    status: 'Daily Route',
+    eligible: true
+  },
+  {
+    code: 'NN3',
+    areaName: 'Abington, Weston Favell & Moulton',
+    suburbs: 'Abington Park, Weston Favell, Boothville, Moulton & Parklands.',
+    status: 'Daily Route',
+    eligible: true
+  },
+  {
+    code: 'NN4',
+    areaName: 'Wootton, Grange Park & Brackmills',
+    suburbs: 'Wootton, Grange Park, Collingtree, East Hunsbury, Hardingstone.',
+    status: 'Daily Route',
+    eligible: true
+  },
+  {
+    code: 'NN5',
+    areaName: 'Duston, Upton & Sixfields',
+    suburbs: 'Duston, Upton, New Duston, St James & Sixfields.',
+    status: 'Daily Route',
+    eligible: true
+  },
+  {
+    code: 'NN8 & NN9',
+    areaName: 'Wellingborough & Surrounds',
+    suburbs: 'Wellingborough Town, Finedon, Wilby, Great Doddington & Irthlingborough.',
+    status: 'Daily Route',
+    eligible: true
+  },
+  {
+    code: 'NN10',
+    areaName: 'Rushden & Higham Ferrers',
+    suburbs: 'Rushden, Higham Ferrers, Rushden Lakes & Chelveston.',
+    status: 'Daily Route',
+    eligible: true
+  },
+  {
+    code: 'NN14, NN15 & NN16',
+    areaName: 'Kettering & Rothwell',
+    suburbs: 'Kettering Central, Burton Latimer, Barton Seagrave & Rothwell.',
+    status: 'Daily Route',
+    eligible: true
+  },
+  {
+    code: 'NN11',
+    areaName: 'Daventry & Western Villages',
+    suburbs: 'Daventry Town, Weedon Bec, Braunston, Badby & Long Buckby.',
+    status: 'Regular Route',
+    eligible: true
+  },
+  {
+    code: 'NN12 & NN13',
+    areaName: 'Towcester, Brackley & South Northants',
+    suburbs: 'Towcester, Silverstone, Brackley, Potterspury & Paulerspury.',
+    status: 'Regular Route',
+    eligible: true
+  },
+  {
+    code: 'NN17 & NN18',
+    areaName: 'Corby & Weldon',
+    suburbs: 'Corby Town, Weldon, Great Oakley, Danesholme & Stanion.',
+    status: 'Priority Route',
+    eligible: true
   }
 ];
 
@@ -361,3 +467,8 @@ export const HAMPSHIRE_ZONES: PostcodeZone[] = [
     eligible: true
   }
 ];
+
+export const REGION_ZONES: Record<Region, PostcodeZone[]> = {
+  northampton: NORTHAMPTONSHIRE_ZONES,
+  southampton: HAMPSHIRE_ZONES,
+};

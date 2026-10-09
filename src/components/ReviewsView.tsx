@@ -32,7 +32,7 @@ export const ReviewsView: React.FC<ReviewsViewProps> = ({ selectedRegion, onOpen
       quote: newReview.quote,
       serviceType: newReview.service,
       region: regionConfig.name,
-      targetEmail: 'ecoshinecleanerslimited@gmail.com',
+      targetEmail: 'info@ecoshinecleaners.uk.com',
       targetPhone: '+44 7375 614692',
     };
 
@@ -43,7 +43,7 @@ export const ReviewsView: React.FC<ReviewsViewProps> = ({ selectedRegion, onOpen
         body: JSON.stringify(payload),
       }).catch((err) => console.log('Backend review submit error:', err));
 
-      await fetch('https://formsubmit.co/ajax/ecoshinecleanerslimited@gmail.com', {
+      await fetch('https://formsubmit.co/ajax/info@ecoshinecleaners.uk.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -192,10 +192,10 @@ export const ReviewsView: React.FC<ReviewsViewProps> = ({ selectedRegion, onOpen
                 <h4 className="font-bold text-lg text-[#004A2B]">Thank You for Your Feedback!</h4>
                 <div className="inline-flex items-center gap-1.5 bg-[#DDF3C7] text-[#004A2B] px-3 py-1 rounded-full text-[11px] font-bold">
                   <span>✉️ Forwarded to:</span>
-                  <span className="underline">ecoshinecleanerslimited@gmail.com</span>
+                  <span className="underline">info@ecoshinecleaners.uk.com</span>
                 </div>
                 <p className="text-xs text-gray-600 mt-2">
-                  Your feedback helps us maintain our 5-star chemical-free standard across Hampshire & Northamptonshire.
+                  Your feedback helps us maintain our 5-star chemical-free standard across Northamptonshire and all local routes.
                 </p>
               </div>
             ) : (
@@ -223,7 +223,7 @@ export const ReviewsView: React.FC<ReviewsViewProps> = ({ selectedRegion, onOpen
                     value={newReview.location}
                     onChange={(e) => setNewReview({ ...newReview, location: e.target.value })}
                     className="w-full text-xs p-2.5 rounded-lg border border-gray-300 focus:ring-[#57B900] focus:border-[#57B900]"
-                    placeholder="e.g. Ocean Village, Southampton"
+                    placeholder="e.g. Abington, Northampton"
                   />
                 </div>
                 <div>

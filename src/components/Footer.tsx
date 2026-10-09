@@ -117,11 +117,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, selectedRegion }) =>
               ) : (
                 <>
                   <li>Northampton Town Centre (NN1)</li>
-                  <li>Abington & Kingsthorpe (NN1/NN2)</li>
+                  <li>Abington & Kingsthorpe (NN2/NN3)</li>
                   <li>Duston & Upton (NN5)</li>
                   <li>Wootton & Grange Park (NN4)</li>
-                  <li>Towcester & South Northants</li>
-                  <li>Daventry & Surrounding Villages</li>
+                  <li>Kettering & Corby (NN15/NN17)</li>
+                  <li>Wellingborough & Rushden (NN8/NN10)</li>
+                  <li>Daventry & Towcester (NN11/NN12)</li>
                 </>
               )}
             </ul>
@@ -130,7 +131,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, selectedRegion }) =>
           {/* Col 5: Hub Contact */}
           <div className="space-y-3">
             <h3 className="text-xs font-bold text-[#57B900] uppercase tracking-wider">
-              {regionConfig.name.includes('Southampton') ? 'Southampton Hub' : 'Northampton Hub'}
+              {regionConfig.name.includes('Northampton') ? 'Northamptonshire HQ' : 'Regional Hub'}
             </h3>
             <div className="text-xs text-slate-300 space-y-2">
               <p className="flex items-start gap-1.5">

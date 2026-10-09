@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Region } from '../types';
-import { HAMPSHIRE_ZONES, REGIONS, FAQS } from '../data/cleaningData';
+import { REGION_ZONES, REGIONS, FAQS } from '../data/cleaningData';
 import cleanerPortraitImg from '../assets/images/cleaner_portrait_1791129329275.jpg';
 
 interface ContactViewProps {
@@ -44,7 +44,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ selectedRegion }) => {
       hasPets: form.hasPets,
       source: 'Online Contact Enquiry',
       region: regionConfig.name,
-      targetEmail: 'ecoshinecleanerslimited@gmail.com',
+      targetEmail: 'info@ecoshinecleaners.uk.com',
       targetPhone: '+44 7375 614692',
     };
 
@@ -56,8 +56,8 @@ export const ContactView: React.FC<ContactViewProps> = ({ selectedRegion }) => {
         body: JSON.stringify(payload),
       }).catch((err) => console.log('Backend log:', err));
 
-      // 2. Direct client-side dispatch to FormSubmit for ecoshinecleanerslimited@gmail.com
-      await fetch('https://formsubmit.co/ajax/ecoshinecleanerslimited@gmail.com', {
+      // 2. Direct client-side dispatch to FormSubmit for info@ecoshinecleaners.uk.com
+      await fetch('https://formsubmit.co/ajax/info@ecoshinecleaners.uk.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -148,7 +148,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ selectedRegion }) => {
                   <h3 className="text-2xl font-extrabold text-[#004A2B]">Enquiry Dispatched!</h3>
                   <div className="mt-2.5 inline-flex items-center gap-2 bg-[#DDF3C7] text-[#004A2B] px-3.5 py-1.5 rounded-full text-xs font-bold border border-[#57B900]/30">
                     <span>✉️ Sent to:</span>
-                    <span className="underline">ecoshinecleanerslimited@gmail.com</span>
+                    <span className="underline">info@ecoshinecleaners.uk.com</span>
                   </div>
                 </div>
 
@@ -171,7 +171,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ selectedRegion }) => {
                   </a>
 
                   <a
-                    href={`mailto:ecoshinecleanerslimited@gmail.com?subject=EcoShine Enquiry [${submissionRef}]&body=${mailtoBody}`}
+                    href={`mailto:info@ecoshinecleaners.uk.com?subject=EcoShine Enquiry [${submissionRef}]&body=${mailtoBody}`}
                     className="bg-[#004A2B] hover:bg-black text-white px-5 py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow-sm transition"
                   >
                     <span>✉️ Email Draft Copy</span>
@@ -549,7 +549,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ selectedRegion }) => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {HAMPSHIRE_ZONES.map((zone, i) => (
+            {(REGION_ZONES[selectedRegion] || []).map((zone, i) => (
               <div
                 key={i}
                 className="p-5 rounded-xl border border-gray-200 bg-[#F4FAEF]/40 hover:border-[#57B900] transition shadow-2xs"

@@ -17,7 +17,7 @@ import { QuoteBookingModal } from './components/QuoteBookingModal';
 
 export default function App() {
   const [activeScreen, setActiveScreen] = useState<ActiveScreen>('home');
-  const [selectedRegion, setSelectedRegion] = useState<Region>('southampton');
+  const [selectedRegion, setSelectedRegion] = useState<Region>('northampton');
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [quoteInitialService, setQuoteInitialService] = useState<ServiceType>('regular');
   const [quoteInitialData, setQuoteInitialData] = useState<Partial<BookingState> | undefined>(undefined);

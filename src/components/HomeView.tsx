@@ -79,10 +79,15 @@ export const HomeView: React.FC<HomeViewProps> = ({
   ];
 
   const popularAreasNorthampton = [
-    'Abington',
-    'Duston',
+    'Northampton Centre',
+    'Abington & Weston Favell',
     'Kingsthorpe',
-    'Wootton',
+    'Duston & Upton',
+    'Wootton & Grange Park',
+    'Kettering',
+    'Wellingborough',
+    'Corby',
+    'Rushden',
     'Daventry',
     'Towcester',
   ];
@@ -757,20 +762,36 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </p>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2">
-                {[
-                  'Ocean Village (SO14)',
-                  'Southampton Centre',
-                  'Bassett & Chilworth',
-                  'Shirley & Maybush',
-                  'Portswood & Highfield',
-                  'Bitterne & Woolston',
-                  'Totton & Waterside',
-                  "Eastleigh & Chandler's",
-                  'Romsey & Wellow',
-                  'Winchester City',
-                  'Hedge End & Botley',
-                  'Hamble & Netley',
-                ].map((zone) => (
+                {(selectedRegion === 'northampton'
+                  ? [
+                      'Northampton Centre (NN1)',
+                      'Kingsthorpe & Boughton (NN2)',
+                      'Abington & Moulton (NN3)',
+                      'Wootton & Grange Park (NN4)',
+                      'Duston & Upton (NN5)',
+                      'Wellingborough & Finedon (NN8)',
+                      'Rushden & Lakes (NN10)',
+                      'Kettering Central (NN15/16)',
+                      'Daventry & Weedon (NN11)',
+                      'Towcester & South Northants (NN12)',
+                      'Corby & Weldon (NN17/18)',
+                      'Brackley & Silverstone (NN13)',
+                    ]
+                  : [
+                      'Ocean Village (SO14)',
+                      'Southampton Centre',
+                      'Bassett & Chilworth',
+                      'Shirley & Maybush',
+                      'Portswood & Highfield',
+                      'Bitterne & Woolston',
+                      'Totton & Waterside',
+                      "Eastleigh & Chandler's",
+                      'Romsey & Wellow',
+                      'Winchester City',
+                      'Hedge End & Botley',
+                      'Hamble & Netley',
+                    ]
+                ).map((zone) => (
                   <div
                     key={zone}
                     className="p-2.5 bg-white rounded-xl border border-gray-200 text-xs font-semibold text-gray-700 flex items-center gap-1.5 shadow-xs"
