@@ -13,18 +13,87 @@
 :root {
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   color: #18201C;
-  background-color: #F4FAEF;
+  background-color: #FFFFFF;
 }
 
-/* Custom scrollbar and smooth interaction */
 html {
   scroll-behavior: smooth;
 }
 
-.hero-glow {
-  background: radial-gradient(circle at 50% 10%, rgba(221, 243, 199, 0.6) 0%, rgba(244, 250, 239, 0) 70%);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
-.custom-shadow {
-  box-shadow: 0 12px 32px -4px rgba(0, 74, 43, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+/* Form controls share one look across the site */
+.field {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid #d6dbd8;
+  background: #fff;
+  padding: 0.8rem 0.95rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #18201C;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.field:focus {
+  border-color: #004A2B;
+  box-shadow: 0 0 0 3px rgba(0, 74, 43, 0.15);
+}
+
+.btn-primary {
+  background: #004A2B;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: #00371f;
+}
+.btn-secondary {
+  background: #fff;
+  color: #004A2B;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1.5rem;
+  border: 2px solid #004A2B;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  background: #F4FAEF;
+}
+.btn-accent {
+  background: #57B900;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+.btn-accent:hover {
+  background: #4ba000;
+}
+
+.safe-bottom {
+  padding-bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px));
 }

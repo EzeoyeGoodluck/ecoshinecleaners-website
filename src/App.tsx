@@ -1,128 +1,61 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import React, { useState, useEffect } from 'react';
-import { ActiveScreen, ServiceType, Region, BookingState } from './types';
+import { ActiveScreen } from './types';
 import { Header } from './components/Header';
 import { HomeView } from './components/HomeView';
-import { ServicesView } from './components/ServicesView';
-import { ServiceAreasView } from './components/ServiceAreasView';
-import { ReviewsView } from './components/ReviewsView';
+import { ServicePage } from './components/ServicePage';
+import { FAQView } from './components/FAQView';
+import { QuoteView } from './components/QuoteView';
 import { ContactView } from './components/ContactView';
 import { Footer } from './components/Footer';
 import { MobileStickyBar } from './components/MobileStickyBar';
 import { QuoteBookingModal } from './components/QuoteBookingModal';
+import { getService } from './data/services';
+
+const SCREENS: ActiveScreen[] = ['home', 'regular', 'deep', 'tenancy', 'commercial', 'faq', 'quote', 'contact'];
 
 export default function App() {
   const [activeScreen, setActiveScreen] = useState<ActiveScreen>('home');
-  const [selectedRegion, setSelectedRegion] = useState<Region>('northampton');
-  const [isQuoteOpen, setIsQuoteOpen] = useState(false);
-  const [quoteInitialService, setQuoteInitialService] = useState<ServiceType>('regular');
-  const [quoteInitialData, setQuoteInitialData] = useState<Partial<BookingState> | undefined>(undefined);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [bookingService, setBookingService] = useState('');
 
-  const handleOpenQuote = (
-    service?: ServiceType,
-    initialDataOrAddOns?: Partial<BookingState> | string[]
-  ) => {
-    if (service) setQuoteInitialService(service);
-    if (Array.isArray(initialDataOrAddOns)) {
-      setQuoteInitialData({ selectedAddOns: initialDataOrAddOns });
-    } else {
-      setQuoteInitialData(initialDataOrAddOns);
-    }
-    setIsQuoteOpen(true);
+  const openBooking = (service = '') => {
+    setBookingService(service);
+    setIsBookingOpen(true);
   };
 
-  const handleNavigate = (screen: ActiveScreen) => {
+  const navigate = (screen: ActiveScreen) => {
     setActiveScreen(screen);
+    window.history.replaceState(null, '', screen === 'home' ? window.location.pathname : `#${screen}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   useEffect(() => {
-    // Listen to hash changes if any
-    const handleHash = () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash === 'pricing-grid' || hash === 'services' || hash === 'regular' || hash === 'deep-clean' || hash === 'tenancy') {
-        setActiveScreen('services');
-      } else if (hash === 'contact' || hash === 'enquiry-form') {
-        setActiveScreen('contact');
-      } else if (hash === 'reviews') {
-        setActiveScreen('reviews');
-      } else if (hash === 'areas' || hash === 'comparison-matrix') {
-        setActiveScreen('areas');
-      }
+    const fromHash = () => {
+      const hash = window.location.hash.replace('#', '') as ActiveScreen;
+      if (SCREENS.includes(hash)) setActiveScreen(hash);
     };
-
-    window.addEventListener('hashchange', handleHash);
-    return () => window.removeEventListener('hashchange', handleHash);
+    fromHash();
+    window.addEventListener('hashchange', fromHash);
+    return () => window.removeEventListener('hashchange', fromHash);
   }, []);
 
+  const service = getService(activeScreen);
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#F4FAEF] text-[#18201C] pb-14 lg:pb-0 selection:bg-[#DDF3C7] selection:text-[#004A2B]">
-      {/* Sticky Header with Notification Bar */}
-      <Header
-        activeScreen={activeScreen}
-        onNavigate={handleNavigate}
-        onOpenQuote={() => handleOpenQuote('regular')}
-        selectedRegion={selectedRegion}
-        onSelectRegion={setSelectedRegion}
-      />
+    <div className="min-h-screen flex flex-col bg-white text-[#18201C] pb-16 lg:pb-0 selection:bg-[#DDF3C7] selection:text-[#004A2B]">
+      <Header activeScreen={activeScreen} onNavigate={navigate} onOpenBooking={() => openBooking()} />
 
-      {/* Main Dynamic Screen Content */}
       <main className="flex-grow">
-        {activeScreen === 'home' && (
-          <HomeView
-            onNavigate={handleNavigate}
-            onOpenQuote={handleOpenQuote}
-            selectedRegion={selectedRegion}
-          />
-        )}
-
-        {activeScreen === 'services' && (
-          <ServicesView
-            onOpenQuote={handleOpenQuote}
-            selectedRegion={selectedRegion}
-          />
-        )}
-
-        {activeScreen === 'areas' && (
-          <ServiceAreasView
-            selectedRegion={selectedRegion}
-            onOpenQuote={() => handleOpenQuote('regular')}
-          />
-        )}
-
-        {activeScreen === 'reviews' && (
-          <ReviewsView
-            selectedRegion={selectedRegion}
-            onOpenQuote={() => handleOpenQuote('regular')}
-          />
-        )}
-
-        {activeScreen === 'contact' && (
-          <ContactView selectedRegion={selectedRegion} />
-        )}
+        {activeScreen === 'home' && <HomeView onNavigate={navigate} onOpenBooking={openBooking} />}
+        {service && <ServicePage service={service} onOpenBooking={() => openBooking(service.formService)} onNavigate={navigate} />}
+        {activeScreen === 'faq' && <FAQView onOpenBooking={() => openBooking()} onNavigate={navigate} />}
+        {activeScreen === 'quote' && <QuoteView />}
+        {activeScreen === 'contact' && <ContactView />}
       </main>
 
-      {/* Footer */}
-      <Footer onNavigate={handleNavigate} selectedRegion={selectedRegion} />
-
-      {/* Mobile Sticky Bottom CTA */}
-      <MobileStickyBar
-        onOpenQuote={() => handleOpenQuote('regular')}
-        selectedRegion={selectedRegion}
-      />
-
-      {/* Interactive Booking & Instant Quote Modal */}
-      <QuoteBookingModal
-        isOpen={isQuoteOpen}
-        onClose={() => setIsQuoteOpen(false)}
-        initialService={quoteInitialService}
-        initialData={quoteInitialData}
-        selectedRegion={selectedRegion}
-      />
+      <Footer onNavigate={navigate} />
+      <MobileStickyBar onOpenBooking={() => openBooking()} />
+      <QuoteBookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} initialService={bookingService} />
     </div>
   );
 }

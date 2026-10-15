@@ -1,254 +1,182 @@
 import React, { useState } from 'react';
 import { Logo } from './Logo';
-import { ActiveScreen, Region } from '../types';
-import { REGIONS } from '../data/cleaningData';
+import { ActiveScreen } from '../types';
+import { BUSINESS } from '../config';
 
 interface HeaderProps {
   activeScreen: ActiveScreen;
   onNavigate: (screen: ActiveScreen) => void;
-  onOpenQuote: () => void;
-  selectedRegion: Region;
-  onSelectRegion: (region: Region) => void;
+  onOpenBooking: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({
-  activeScreen,
-  onNavigate,
-  onOpenQuote,
-  selectedRegion,
-  onSelectRegion,
-}) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const regionConfig = REGIONS[selectedRegion];
+const RESIDENTIAL_LINKS: { label: string; screen: ActiveScreen }[] = [
+  { label: 'Regular Cleaning', screen: 'regular' },
+  { label: 'Deep Cleaning', screen: 'deep' },
+  { label: 'End of Tenancy', screen: 'tenancy' },
+];
+const RESIDENTIAL_SCREENS: ActiveScreen[] = ['regular', 'deep', 'tenancy'];
 
-  const handleNav = (screen: ActiveScreen) => {
+const PhoneIcon = () => (
+  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.9 2z" />
+  </svg>
+);
+
+export const Header: React.FC<HeaderProps> = ({ activeScreen, onNavigate, onOpenBooking }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [residentialOpen, setResidentialOpen] = useState(false);
+  const regionConfig = BUSINESS;
+
+  const go = (screen: ActiveScreen) => {
     onNavigate(screen);
     setMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setResidentialOpen(false);
   };
+
+  const navClass = (active: boolean) =>
+    `px-3 py-2 rounded-lg text-[15px] font-semibold transition ${
+      active ? 'text-[#004A2B]' : 'text-[#18201C] hover:text-[#004A2B]'
+    }`;
 
   return (
     <>
-      {/* BEGIN: Top Announcement Utility Bar */}
-      <aside
-        className="bg-[#004A2B] text-white text-xs font-medium py-2.5 px-4 border-b border-white/10"
-        data-purpose="announcement-bar"
-      >
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-left">
-          {/* USP Highlight & Region Indicator */}
-          <div className="flex items-center space-x-2">
-            <span className="inline-block">
-              🌿 100% Non-Toxic, Plant-Based & Pet-Safe Cleaning Across {regionConfig.name}
-            </span>
-          </div>
+      {/* Promo strip */}
+      <div className="bg-[#004A2B] text-white text-sm py-2 px-4 text-center">
+        <span>New customers get <strong>£10 off</strong> your first clean.</span>{' '}
+        <button onClick={() => go('quote')} className="underline underline-offset-2 font-semibold hover:text-[#DDF3C7]">
+          Claim your offer
+        </button>
+      </div>
 
-          {/* Region Switcher & Contact Quick Info */}
-          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-slate-200">
-            {/* Region Selector */}
-            <div className="inline-flex items-center bg-white/10 rounded-full px-2.5 py-0.5 text-[11px] font-semibold">
-              <span className="text-emerald-300 mr-1.5">📍 Hub:</span>
-              <select
-                value={selectedRegion}
-                onChange={(e) => onSelectRegion(e.target.value as Region)}
-                className="bg-transparent text-white border-0 text-[11px] font-bold focus:ring-0 cursor-pointer pr-4 py-0"
-                aria-label="Select service hub region"
-              >
-                <option value="northampton" className="bg-[#004A2B] text-white">
-                  Northamptonshire (HQ)
-                </option>
-                <option value="southampton" className="bg-[#004A2B] text-white">
-                  Southampton & Hampshire
-                </option>
-              </select>
-            </div>
-
-            <a
-              className="hover:text-[#57B900] transition-colors flex items-center gap-1.5"
-              href={`tel:${regionConfig.phoneRaw}`}
-            >
-              <span>📞</span>
-              <span className="font-semibold text-white">{regionConfig.phone}</span>
-            </a>
-
-            <a
-              className="hover:text-[#57B900] transition-colors flex items-center gap-1.5 hidden sm:flex"
-              href={`mailto:${regionConfig.email}`}
-            >
-              <span>✉️</span>
-              <span>{regionConfig.email}</span>
-            </a>
-
-            <span className="hidden lg:inline text-white/40">|</span>
-            <span className="hidden lg:inline text-slate-300">Mon–Sat: 8:00am–6:30pm</span>
-          </div>
-        </div>
-      </aside>
-      {/* END: TopBar */}
-
-      {/* BEGIN: MainHeader */}
-      <header
-        className="bg-white sticky top-0 z-40 shadow-xs border-b border-emerald-900/10"
-        data-purpose="main-navigation"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between">
-          {/* Brand Logo */}
-          <button
-            onClick={() => handleNav('home')}
-            className="flex items-center gap-3 text-left focus:outline-hidden"
-            aria-label="Go to Home"
-          >
-            <Logo className="h-12 sm:h-14" variant="light" />
+      <header className="bg-white sticky top-0 z-40 border-b border-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[76px] flex items-center justify-between gap-4">
+          <button onClick={() => go('home')} className="flex items-center text-left" aria-label="EcoShine Cleaners home">
+            <Logo className="h-11 sm:h-12" variant="light" showTagline={false} />
           </button>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2 text-[15px] font-semibold text-[#18201C]">
-            <button
-              onClick={() => handleNav('home')}
-              className={`px-3.5 py-2 rounded-lg transition ${
-                activeScreen === 'home'
-                  ? 'bg-[#DDF3C7] text-[#004A2B] font-bold'
-                  : 'hover:text-[#004A2B] hover:bg-[#F4FAEF]'
-              }`}
+          {/* Desktop nav */}
+          <nav className="hidden lg:flex items-center gap-1" aria-label="Main">
+            <div
+              className="relative"
+              onMouseEnter={() => setResidentialOpen(true)}
+              onMouseLeave={() => setResidentialOpen(false)}
             >
-              Home
+              <button
+                className={navClass(RESIDENTIAL_SCREENS.includes(activeScreen)) + ' flex items-center gap-1'}
+                onClick={() => go('regular')}
+                aria-haspopup="true"
+                aria-expanded={residentialOpen}
+              >
+                Residential
+                <svg className="w-3.5 h-3.5 mt-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fillRule="evenodd" d="M5.3 7.3a1 1 0 0 1 1.4 0L10 10.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 0-1.4z" clipRule="evenodd" />
+                </svg>
+              </button>
+              {residentialOpen && (
+                <div className="absolute left-0 top-full pt-2">
+                  <div className="bg-white border border-gray-200 rounded-xl shadow-lg py-2 w-56">
+                    {RESIDENTIAL_LINKS.map((l) => (
+                      <button
+                        key={l.screen}
+                        onClick={() => go(l.screen)}
+                        className="w-full text-left px-4 py-2.5 text-sm font-medium text-[#18201C] hover:bg-[#F4FAEF] hover:text-[#004A2B]"
+                      >
+                        {l.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+            <button onClick={() => go('commercial')} className={navClass(activeScreen === 'commercial')}>
+              Commercial
             </button>
-            <button
-              onClick={() => handleNav('services')}
-              className={`px-3.5 py-2 rounded-lg transition ${
-                activeScreen === 'services'
-                  ? 'bg-[#DDF3C7] text-[#004A2B] font-bold'
-                  : 'hover:text-[#004A2B] hover:bg-[#F4FAEF]'
-              }`}
-            >
-              Services & Pricing
+            <button onClick={() => go('faq')} className={navClass(activeScreen === 'faq')}>
+              FAQs
             </button>
-            <button
-              onClick={() => handleNav('areas')}
-              className={`px-3.5 py-2 rounded-lg transition ${
-                activeScreen === 'areas'
-                  ? 'bg-[#DDF3C7] text-[#004A2B] font-bold'
-                  : 'hover:text-[#004A2B] hover:bg-[#F4FAEF]'
-              }`}
-            >
-              Service Areas
+            <button onClick={() => go('quote')} className={navClass(activeScreen === 'quote')}>
+              Get a Quote
             </button>
-            <button
-              onClick={() => handleNav('reviews')}
-              className={`px-3.5 py-2 rounded-lg transition ${
-                activeScreen === 'reviews'
-                  ? 'bg-[#DDF3C7] text-[#004A2B] font-bold'
-                  : 'hover:text-[#004A2B] hover:bg-[#F4FAEF]'
-              }`}
-            >
-              Reviews
-            </button>
-            <button
-              onClick={() => handleNav('contact')}
-              className={`px-3.5 py-2 rounded-lg transition ${
-                activeScreen === 'contact'
-                  ? 'bg-[#DDF3C7] text-[#004A2B] font-bold'
-                  : 'hover:text-[#004A2B] hover:bg-[#F4FAEF]'
-              }`}
-            >
+            <button onClick={() => go('contact')} className={navClass(activeScreen === 'contact')}>
               Contact Us
             </button>
           </nav>
 
-          {/* Header Actions */}
-          <div className="flex items-center space-x-4">
-            <div className="hidden xl:flex flex-col text-right">
-              <span className="text-[11px] uppercase font-bold text-gray-500 tracking-wider">
-                Bookings & Advice
-              </span>
+          <div className="flex items-center gap-3">
+            <div className="hidden md:flex flex-col items-end leading-tight">
               <a
-                className="text-base font-extrabold text-[#004A2B] hover:text-[#57B900] transition"
                 href={`tel:${regionConfig.phoneRaw}`}
+                className="inline-flex items-center gap-2 text-[15px] font-bold text-[#004A2B] hover:text-[#57B900] transition"
               >
+                <PhoneIcon />
                 {regionConfig.phone}
               </a>
+              <a
+                href={`tel:${regionConfig.phone2Raw}`}
+                className="hidden xl:inline text-xs font-semibold text-gray-600 hover:text-[#57B900] transition"
+              >
+                or {regionConfig.phone2}
+              </a>
             </div>
-
-            <button
-              onClick={onOpenQuote}
-              className="hidden md:flex bg-[#57B900] hover:bg-[#4ea600] text-white font-bold px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl shadow-md shadow-[#57B900]/25 hover:shadow-lg transition-all transform hover:-translate-y-0.5 text-xs sm:text-sm items-center gap-2 cursor-pointer active:scale-95"
-            >
-              <span>Get Instant Quote</span>
-              <span className="text-base sm:text-lg">→</span>
+            <button onClick={onOpenBooking} className="hidden sm:inline-flex btn-accent text-sm py-2.5 px-5">
+              Book now
             </button>
-
-            {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 focus:outline-hidden"
-              aria-label="Toggle navigation menu"
+              className="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100"
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileMenuOpen}
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
                 {mobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 12h16M4 17h16" />
                 )}
               </svg>
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer */}
+        {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-gray-100 bg-white px-4 pt-3 pb-6 space-y-2 shadow-lg animate-in slide-in-from-top duration-200">
-            <button
-              onClick={() => handleNav('home')}
-              className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-bold ${
-                activeScreen === 'home' ? 'bg-[#DDF3C7] text-[#004A2B]' : 'text-[#18201C]'
-              }`}
-            >
-              Home
-            </button>
-            <button
-              onClick={() => handleNav('services')}
-              className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-bold ${
-                activeScreen === 'services' ? 'bg-[#DDF3C7] text-[#004A2B]' : 'text-[#18201C]'
-              }`}
-            >
-              Services & Pricing
-            </button>
-            <button
-              onClick={() => handleNav('areas')}
-              className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-bold ${
-                activeScreen === 'areas' ? 'bg-[#DDF3C7] text-[#004A2B]' : 'text-[#18201C]'
-              }`}
-            >
-              Service Areas
-            </button>
-            <button
-              onClick={() => handleNav('reviews')}
-              className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-bold ${
-                activeScreen === 'reviews' ? 'bg-[#DDF3C7] text-[#004A2B]' : 'text-[#18201C]'
-              }`}
-            >
-              Reviews
-            </button>
-            <button
-              onClick={() => handleNav('contact')}
-              className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-bold ${
-                activeScreen === 'contact' ? 'bg-[#DDF3C7] text-[#004A2B]' : 'text-[#18201C]'
-              }`}
-            >
-              Contact Us
-            </button>
-
-            <div className="pt-3 border-t border-gray-100 flex flex-col gap-2">
-              <a
-                href={`tel:${regionConfig.phoneRaw}`}
-                className="w-full text-center py-2.5 rounded-lg bg-[#F4FAEF] text-[#004A2B] font-bold text-sm"
-              >
-                📞 Call {regionConfig.phone}
-              </a>
+          <div className="lg:hidden border-t border-gray-100 bg-white px-4 pt-2 pb-5">
+            <p className="px-3 pt-3 pb-1 text-xs font-semibold text-gray-500">Residential</p>
+            {RESIDENTIAL_LINKS.map((l) => (
               <button
-                onClick={() => handleNav('contact')}
-                className="w-full text-center py-2.5 rounded-lg bg-[#004A2B] text-white font-bold text-sm shadow-sm"
+                key={l.screen}
+                onClick={() => go(l.screen)}
+                className="w-full text-left px-3 py-2.5 rounded-lg text-[15px] font-semibold text-[#18201C] hover:bg-[#F4FAEF]"
               >
-                ✉️ Contact Local Team
+                {l.label}
+              </button>
+            ))}
+            <div className="h-px bg-gray-100 my-2" />
+            {([
+              ['Commercial cleaning', () => go('commercial')],
+              ['FAQs', () => go('faq')],
+              ['Get a quote', () => go('quote')],
+              ['Contact us', () => go('contact')],
+            ] as [string, () => void][]).map(([label, fn]) => (
+              <button
+                key={label}
+                onClick={fn}
+                className="w-full text-left px-3 py-2.5 rounded-lg text-[15px] font-semibold text-[#18201C] hover:bg-[#F4FAEF]"
+              >
+                {label}
+              </button>
+            ))}
+            <p className="pt-4 px-3 text-sm text-gray-600">
+              Call <a href={`tel:${regionConfig.phoneRaw}`} className="font-bold text-[#004A2B]">{regionConfig.phone}</a>
+              {' '}or{' '}
+              <a href={`tel:${regionConfig.phone2Raw}`} className="font-bold text-[#004A2B]">{regionConfig.phone2}</a>
+            </p>
+            <div className="pt-3 grid grid-cols-2 gap-2">
+              <a href={`tel:${regionConfig.phoneRaw}`} className="btn-secondary text-sm">
+                Call now
+              </a>
+              <button onClick={() => { setMobileMenuOpen(false); onOpenBooking(); }} className="btn-accent text-sm">
+                Book now
               </button>
             </div>
           </div>
