@@ -13,7 +13,7 @@ export const BUSINESS = {
 
   whatsapp: "https://wa.me/447375614692",
 
-  email: "info@ecoshinecleaners.uk.com",
+  email: "info@ecoshinecleaners.uk",
 
   samplePostcode: "NN1 5AA",
   hours: "Mon to Sat, 8am to 6:30pm",
